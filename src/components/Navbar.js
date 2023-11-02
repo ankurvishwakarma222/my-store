@@ -10,11 +10,6 @@ const Navbar = ({ filterSelectMethod, filterSelectVal }) => {
       <NavbarWrapper>
         <div className="w-80">
           <a href="/">Logo</a>
-          {/* <a href="/">OurBlog</a>
-            <a href="/">Become A Seller</a> */}
-          {/* <Button padding="1rem 3rem" fontSize="1.6rem">
-              Login
-            </Button> */}
           <div className="search-container">
             <input
               type="text"
@@ -22,7 +17,7 @@ const Navbar = ({ filterSelectMethod, filterSelectVal }) => {
               className="search-box"
               value={filterSelectVal.query}
               onChange={filterSelectMethod}
-              placeholder="Search"
+              placeholder="Search by title"
             />
             <button className="search-button">
               <BiSearch />
@@ -51,7 +46,7 @@ const Navbar = ({ filterSelectMethod, filterSelectVal }) => {
               className="search-box"
               value={filterSelectVal.query}
               onChange={filterSelectMethod}
-              placeholder="Search"
+              placeholder="Search by title"
             />
             <button className="search-button">
               <BiSearch />
