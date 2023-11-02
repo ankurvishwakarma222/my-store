@@ -1,24 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import FilterSection from "./components/FilterSection";
+import HomeBanner from "./components/HomeBanner";
+import Navbar from "./components/Navbar";
+import ProductCard from "./components/ProductCard";
 
 function App() {
+  const [filterselect, setFilterSelect] = useState({
+    filterPrice: "",
+    filterCategory: "",
+    filterAvailiability: "",
+    query: "",
+  });
+  const handleSelect = (e) => {
+    setFilterSelect((pre) => {
+      var name = e.target.name;
+      var value = e.target.value;
+      return {
+        ...pre,
+        [name]: value,
+      };
+    });
+  };
+
+  const resetFilter = () => {
+    setFilterSelect({
+      filterPrice: "",
+      filterCategory: "",
+      filterAvailiability: "",
+      query: "",
+    });
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar
+        filterSelectVal={filterselect}
+        filterSelectMethod={handleSelect}
+      />
+      {/* <HomeBanner /> */}
+      <FilterSection
+        filterSelectVal={filterselect}
+        filterSelectMethod={handleSelect}
+        resetFilterMethod={resetFilter}
+      />
+      <ProductCard filters={filterselect} />
+    </>
   );
 }
 
