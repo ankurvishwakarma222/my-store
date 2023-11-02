@@ -1,6 +1,5 @@
 import { useState } from "react";
 import FilterSection from "./components/FilterSection";
-import HomeBanner from "./components/HomeBanner";
 import Navbar from "./components/Navbar";
 import ProductCard from "./components/ProductCard";
 
@@ -36,7 +35,6 @@ function App() {
         filterSelectVal={filterselect}
         filterSelectMethod={handleSelect}
       />
-      {/* <HomeBanner /> */}
       <FilterSection
         filterSelectVal={filterselect}
         filterSelectMethod={handleSelect}

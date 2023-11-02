@@ -5,7 +5,7 @@ import data from "../Api/data";
 const ProductCard = ({ filters }) => {
   // for pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const recordsPerPage = 5;
+  const recordsPerPage = 6;
   const totalRecords = data.length;
   const totalPages = Math.ceil(totalRecords / recordsPerPage);
 
@@ -15,11 +15,6 @@ const ProductCard = ({ filters }) => {
   const records = data.slice(firstIndex, lastIndex);
   const [npage, setNPage] = useState(Math.ceil(data.length / recordsPerPage));
   const [numbers, setNumbers] = useState([...Array(npage + 1).keys()].slice(1));
-
-  // let npage = Math.ceil(data.length / recordsPerPage);
-
-  // let numbers = [...Array(npage + 1).keys()].slice(1);
-  // end
   console.log(filters);
   const { query, filterPrice, filterCategory, filterAvailiability } = filters;
   const [filterData, setFilterData] = useState(records);
@@ -152,10 +147,10 @@ const ProductCard = ({ filters }) => {
               );
             })}
         </div>
-        {filterData.length > 0 && (
+        {npage > 1 && (
           <div className="w-80 pagination">
             <ul>
-              <li onClick={prePage}>Previous</li>
+              {currentPage > 1 && <li onClick={prePage}>Previous</li>}
               {numbers.map((n, i) => (
                 <li
                   key={i}
@@ -165,7 +160,9 @@ const ProductCard = ({ filters }) => {
                   {n}
                 </li>
               ))}
-              <li onClick={nextPage}>Next</li>
+              {filterData.length >= recordsPerPage && (
+                <li onClick={nextPage}>Next</li>
+              )}
             </ul>
           </div>
         )}
